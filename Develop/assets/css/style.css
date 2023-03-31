@@ -1,0 +1,233 @@
+/* color scheme sourced from http://khroma.co/generator/ */
+:root {
+  --outer-space: #33393f;
+  --bright-turquoise: #2aefcb;
+  --gin: #e0eae4;
+  --heliotrope: #e866ec;
+}
+
+/* set content highlight color and background */
+::selection {
+  background-color: var(--bright-turquoise);
+  color: var(--outer-space);
+}
+
+html {
+  /* set 1rem to 10px instead of native 16px to make it easier to calculate font-size values for the rest of the page (e.g. 1.6rem is 16px, 2.0rem is 20px, etc.) */
+  font-size: 62.5%;
+  
+}
+
+body {
+  /* Sans Serif font stack is implemented to help select the best font for each type of computer operating system */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  /* set body font size to 1.75rem, which is 1.75x more than the font-size of 10px, making it 17.5px  */
+  font-size: 1.75rem;
+  line-height: 1.5;
+  color: var(--gin);
+  background-color: var(--outer-space);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.625rem;
+  color: var(--heliotrope);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h1 {
+  /* 4rem = 40px (4 * 10px) */
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+h6 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+code {
+  /* Monospace font stack is used for our code blocks to make it look more like code */
+  font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+    'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+    'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
+    monospace;
+}
+
+header {
+  width: 96%;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+header h1.page-title {
+  padding: 1rem 1.2rem;
+  font-size: 4.5rem;
+}
+
+main {
+  width: 96%;
+  margin: 2rem auto;
+}
+
+footer {
+  margin: 1.5rem;
+  text-align: center;
+}
+
+/* This is a utility class used in the html to save a little dev time */
+.justify-center {
+  justify-content: center;
+}
+
+/* TODO: Add the correct "flex" properties to this element.
+   Here we are using negative margins to offset the padding on the .card-column class 
+*/
+.row {
+  /* Multiple lines of code go here */
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+/* 
+  Note: the main items on the page are styled first for mobile views; 
+  we then use media queries to scale up the styling for larger displays.
+
+  Notice how the card-column class has an initial flex-basis size of 100%.
+  That's because on mobile, each card should fill the screen completely.
+*/
+
+.card-column {
+  flex: 1 0 100%;
+  padding: 1.5rem;
+  /* when the screen resizes, make it so our columns don't jump in size */
+  transition: flex-basis 500ms linear;
+  margin-bottom: 1.5rem;
+  width: 33%;
+}
+
+/* 
+  TODO: Put the correct flex properties here for each code-card element. Take a look at
+  the screen shots and match with the html to help you figure out what to do.
+*/
+.code-card {
+  /* Multiple lines of code go here */
+  min-height: 100%;
+  padding: 2rem;
+  color: var(--heliotrope);
+  /* outline is like border, but on the outside of the box instead of inside */
+  outline: 2px dashed var(--gin);
+  outline-offset: -2px;
+  transition: all 0.5s ease-in-out;
+}
+
+.code-card .card-header {
+  /* use position and negative margins to move title of card over the card's outline and create an overlap effect */
+  position: relative;
+  margin: -4rem 0 1.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: var(--outer-space);
+  color: var(--heliotrope);
+  border: 2px solid var(--gin);
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* set an outer and inner drop shadow on the card to create a glowing effect on hover */
+.code-card:hover,
+.code-card:hover .card-header {
+  box-shadow: inset 0px 0px 8px var(--heliotrope), 0 0 15px var(--heliotrope);
+}
+
+/* TODO: The elements should all grow at an equal rate as screen size becomes available. */
+.code-card .code-block {
+}
+
+/* Aren't you glad you didn't need to do this yourself? But take some time to study this code and see what's going on. */
+.code-card pre {
+  /* set styles to make it so code wraps in <pre> instead of overflowing */
+  white-space: pre-wrap;
+  overflow: auto;
+  tab-size: 4;
+  padding: 1.2rem 1rem;
+  color: var(--gin);
+  border-radius: 8px;
+  /* use linear-gradient() function to create a fading background  */
+  background-image: linear-gradient(
+    rgba(232, 102, 236, 0.3) 0%,
+    rgba(232, 102, 236, 0.6) 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
+/* on <pre> click, select all contents so the code is highlighted */
+.code-card pre:active {
+  user-select: all;
+}
+
+@media screen and (min-width: 446px) {
+  /* TODO: For this screen size, the grow and shrink should be completely static, and the both the "default" width and the max-width should be for half the available space. */
+  .card-column {
+    /* Multiple lines of code go here */
+    flex: 0 0 100%;
+  }
+
+  /* select the last child to grow to full width if it has space to grow */
+  .card-column:last-child {
+    flex-grow: 1;
+  }
+}
+
+/* NOTE: Because we are scaling upward, we use min-width in our media queries instead of max-width */
+@media screen and (min-width: 768px) {
+  /* TODO: For this screen size, the grow and shrink should be completely static, and the both the "default" width and the max-width should be for half the available space. */
+  .card-column {
+    /* Multiple lines of code go here */
+    flex: 0 0 50%;
+  }
+
+  /* select the last child to grow to full width if it has space to grow */
+  .card-column:last-child {
+    flex-grow: 1;
+  }
+}
+
+/* media query for larger screens */
+@media screen and (min-width: 992px) {
+
+  header {
+    width: 75%;
+  }
+
+  /* TODO: For this screen size, the grow and shrink should be completely static, and the both the "default" width and the max-width should be for 1/3 the available space. */
+  .card-column {
+    /* Multiple lines of code go here */
+    flex: 0 0 33%;
+  }
+}
